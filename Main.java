@@ -82,15 +82,20 @@ public class Main {
             }
         return result;
     }
+    public static int checkError(String expression){
 
+       return 0;
+    }
 
     public static void main(String[] args) {
         System.out.println("Please type your expression to the calculator:");
         Scanner input = new Scanner(System.in);
         String expression = input.next();
-        List expressionLists = recognize(expression);
-        String result = toDoTheOperation(expressionLists);
-        printer(result);
+        if (checkError(expression) == 0){
+            List expressionLists = recognize(expression);
+            String result = toDoTheOperation(expressionLists);
+            printer(result);
+        }
     }
 
 }
