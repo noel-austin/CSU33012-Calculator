@@ -88,7 +88,7 @@ public class Main {
     
      public static boolean checkExpression(String input) {
     	boolean check = false;
-    	if(!input.contains("+") || !input.contains("-") ||!input.contains("*") ) {
+    	if(!input.contains("+") && !input.contains("-") && !input.contains("*") ) {
     		return false;
     	}
     	char[] chars = input.toCharArray();
