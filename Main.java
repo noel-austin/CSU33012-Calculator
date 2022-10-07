@@ -3,6 +3,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    
+    static char[] testChars = {'0','1','2','3','4','5','6','7','8','9','+','-','*'};
+    
     public static void printer(String result){
         System.out.print(result);
         return;
@@ -82,15 +85,49 @@ public class Main {
             }
         return result;
     }
+    
+     public static boolean checkExpression(String input) {
+    	boolean check = false;
+    	if(!input.contains("+") || !input.contains("-") ||!input.contains("*") ) {
+    		return false;
+    	}
+    	char[] chars = input.toCharArray();
+    	for (char ch: chars) {
+    		int i=0;
+    		while(i<testChars.length) {
+    			if(ch==testChars[i]) {
+    				check = true;
+    				break;
+    			}
+    			
+    			else {
+    				if(i==testChars.length-1) {
+    					return false;
+    				}
+    				check = false;
+    				i++;
+    			}
+    		}
+    	}
+    	return check;
+    	
+    	
+    }
 
 
     public static void main(String[] args) {
         System.out.println("Please type your expression to the calculator:");
         Scanner input = new Scanner(System.in);
         String expression = input.next();
-        List expressionLists = recognize(expression);
-        String result = toDoTheOperation(expressionLists);
-        printer(result);
+        if(checkExpression(expression)==true) {
+            List expressionLists = recognize(expression);
+            String result = toDoTheOperation(expressionLists);
+            printer(result);
+           }
+        else {
+        	System.out.println("Error: Expression must only contain numbers and the following operators: '+' '-' '*', spaces are not permitted!");
+        }
+        
     }
 
 }
